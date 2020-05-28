@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ssunxn news system client</title>
+    <!-- import Element css   -->
+    <link rel="stylesheet" href="./plugins/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/pages/commons.css" />
+    <link rel="stylesheet" href="./css/pages/newsDetail.css" />
+</head>
+<body class="bg-grey">
+    <div id="detail">
+        <el-row>
+            <el-col :span="5" class="grid-main-content"></el-col>
+            <el-col :span="14">
+                <div class="bg-green-light bg-white news-margin-top news-padding-top-bottom">
+                    <h3 class="title-h3">{{newsItem.title}}</h3>
+                    <div class="clearfix" style="padding-top: 8px; padding-right: 8px;"><span class="float-right color-blue-light">{{newsDetail.come}}</span></div>
+                    <div class="news-margin-top news-padding-left-right" v-html="newsDetail.content"></div>
+                    <div class="news-margin-top news-padding-left-right"><i class="color-blue-light">关键词：{{newsDetail.keyword}}</i></div>
+                </div>
+            </el-col>
+            <el-col :span="5" class="grid-main-content"></el-col>
+        </el-row>
+    </div>
+</body>
+</html>
+
+<!-- import Vue before Element -->
+<script src="js/vue/vue.js"></script>
+<!-- import Element JS -->
+<script src="./plugins/element-ui/lib/index.js"></script>
+<!-- import axios -->
+<script src="./js/axios.min.js"></script>
+<script src="./js/pages/commons.js"></script>
+<script src="./js/pages/getParameter.js"></script>
+<script>
+    new Vue({
+       el: "#detail",
+       data() {
+           return {
+               newsDetail: {}, // 新闻详情
+               newsItem: {}, // 新闻对象
+               newsId: 0,   // 新闻id
+           }
+       },
+       created() {
+           this.parseUrlParamNewsId();
+           this.loadingNewsDetailData();
+           this.loadingNewsItemDate();
+       },
+        methods: {
+           parseUrlParamNewsId() {
+               let parameter = getParameter("newsId");
+               if (parameter) {
+                   this.newsId = parameter;
+               }
+           },
+           loadingNewsDetailData() {
+               axios.get(BASE_URL + "/item/newsDetail/find/" + this.newsId).then(resp => {
+                   this.newsDetail = resp.data;
+               }).catch(err => {
+                  console.log("【新闻详情页】详情数据加载失败，异常信息为：", err);
+               });
+           },
+            loadingNewsItemDate() {
+               axios.get(BASE_URL + "/item/newsItem/find/newsItem/" + this.newsId).then(resp => {
+                   this.newsItem = resp.data;
+               }).catch(err => {
+                  console.log("【新闻详情页】新闻对象数据加载失败，异常信息为：", err);
+               });
+            },
+        }
+    });
+</script>

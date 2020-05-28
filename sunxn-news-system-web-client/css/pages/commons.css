@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+
+/*背景颜色属性*/
+.bg-black {
+    background: #242424;
+}
+.bg-red {
+    background: #C20C0C;
+}
+.bg-red-dark {
+    background: #a40011;
+}
+.bg-grey {
+    background: #f5f5f5;
+}
+.bg-green-dark {
+    background: #286a46;
+}
+.bg-green {
+    background: #0aa770;
+}
+.bg-green-light {
+    background: #E6F5FC;
+}
+.bg-blue-light {
+    background: #D0EBFE;
+}
+.bg-blue {
+    background: #4087C5;
+}
+.bg-blue-dark {
+    background: #01204f;
+}
+.bg-white {
+    background: #ffffff;
+}
+
+/*字体颜色*/
+.color-blue-light {
+    color: #2E9BC6;
+}
+.color-black {
+    color: #000000;
+}
+.color-black-main {
+    color: #303133;
+}
+.color-black-default {
+    color: #606266;
+}
+.color-black-other {
+    color: #909399;
+}
+.color-grep-1 {
+    color: #dcdfe6;
+}
+.color-grep-2 {
+    color: #e4e7ed;
+}
+.color-white {
+    color: #ffffff;
+}
+.color-red {
+    color: #C20C0C;
+}
+
+/*高度属性*/
+.grid-top-content {
+    min-height: 75px;
+    line-height: 75px;
+}
+.grid-header-content {
+    min-height: 60px;
+    line-height: 60px;
+}
+.grid-main-content {
+    min-height: 20px;
+}
+
+/*外边距*/
+.news-margin-top {
+    margin-top: 20px;
+}
+.news-margin-right {
+    margin-right: 20px;
+}
+.news-margin-left {
+    margin-left: 10px;
+}
+/*内边距，左右*/
+.news-padding-left-right {
+    padding: 0 10px;
+}
+.news-padding-top-bottom {
+    padding: 20px 0;
+}
+
+/*浮动*/
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+/*清除浮动*/
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
+
+/*字体*/
+.text-bold {
+    font-weight: bold;
+}
+
+/*文字超过一行限制显示，且超过部分显示省略号*/
+.text-over-show {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.news-h3 {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 2px solid grey;
+    margin-bottom: 15px;
+}
+.news-h3 span {
+    border-bottom: 2px solid #3a8ee6;
+    display: block;
+    padding: 0 10px;
+    width: 80px;
+    color: #3a8ee6;
+}
+
+/*dialog中的ul*/
+.news-dialog-ul {
+    max-height: 450px;
+    overflow: auto;
+}
+.news-dialog-ul li {
+    display: block;
+    padding-left: 30px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.news-dialog-ul li a {
+    color: #303133;
+}
+.news-dialog-ul li a:hover {
+    color: #C20C0C;
+    text-decoration: underline;
+}

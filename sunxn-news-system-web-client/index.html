@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sunxn news system client</title>
+    <!-- import Element css   -->
+    <link rel="stylesheet" href="./plugins/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/pages/commons.css" />
+    <link rel="stylesheet" href="./css/pages/index.css" />
+</head>
+<body class="bg-grey">
+    <div id="app">
+
+        <news-top></news-top>
+
+        <news-header></news-header>
+
+        <el-row class="news-margin-top">
+            <el-col :span="4" class="grid-main-content"></el-col>
+            <el-col :span="16">
+                <el-row :gutter="20">
+                    <el-col :span="14">
+                        <el-card class="box-card-height">
+                            <div slot="header" class="clearfix">
+                                <span class="float-left text-bold">要闻 --- <span class="color-blue-light">共<span class="color-red">{{totalNewsItems}}</span>条</span></span>
+                                <span class="float-right color-red">{{todayDate}}</span>
+                            </div>
+                            <div>
+                                <ul class="news-card-ul bg-blue-light">
+                                    <li v-for="(newsItem, i) in newsItems" :key="i" :title="newsItem.title" :class="i%2 === 1 ? 'bg-green-light':''"><a target="_blank" :href="'./newsDetail.html?newsId=' + newsItem.id">{{newsItem.title}}</a></li>
+                                </ul>
+                            </div>
+
+                        </el-card>
+                    </el-col>
+                    <el-col :span="10">
+                        <el-card class="box-card-height">
+                            <div slot="header">
+                                <span class="text-bold">排行榜</span>
+                            </div>
+                            <div>
+                                <ul class="news-card-ul-special">
+                                    <li v-for="(newsLeaderBoard, i) in NewsLeaderBoards" :key="i" :title="newsLeaderBoard.title" class="text-over-show">
+                                        <a :href="'./newsDetail.html?newsId=' + newsLeaderBoard.id" target="_blank"><el-tag :type="i <= 2 ? 'danger':'success'">{{i+1}}</el-tag> {{newsLeaderBoard.title}}</a></li>
+                                </ul>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4" class="grid-main-content"></el-col>
+        </el-row>
+    </div>
+</body>
+</html>
+
+<!-- import Vue before Element -->
+<script src="./js/vue/vue.js"></script>
+<!-- import Element JS -->
+<script src="./plugins/element-ui/lib/index.js"></script>
+<!-- import axios -->
+<script src="./js/axios.min.js"></script>
+
+<script src="./js/pages/newsTop.js"></script>
+<script src="./js/pages/newsHeader.js"></script>
+<script src="./js/pages/commons.js"></script>
+<script src="./js/pages/getParameter.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data() {
+            return {
+                categoryId: 1,  // 分类id
+                newsItems: [],  // 新闻集合
+                totalNewsItems: 0, // 新闻总条数
+                todayDate: new Date().toLocaleDateString(), // 当前日期
+                NewsLeaderBoards: [],    // 新闻排行榜集合
+            };
+        },
+        created() {
+            this.parseUrlParamId();
+            this.loadingNewsInfo();
+            this.todayDate += this.getTodayWeekStr();
+            this.loadingNewsLeaderBoards();
+        },
+        methods: {
+            parseUrlParamId() {
+                let parameter = getParameter("id");
+                if (parameter) {
+                    this.categoryId = parameter;
+                }
+            },
+            getTodayWeekStr() {
+                let date = new Date();
+                let week = date.getDay();
+                console.log("week ", week);
+                switch (week) {
+                    case 1:
+                        return ' 星期一';
+                    case 2:
+                        return ' 星期二';
+                    case 3:
+                        return ' 星期三';
+                    case 4:
+                        return ' 星期四';
+                    case 5:
+                        return ' 星期五';
+                    case 6:
+                        return ' 星期六';
+                    default:
+                        return ' 星期日';
+                }
+            },
+            loadingNewsInfo() {
+                // 查询首页-要闻数据
+                axios.get(BASE_URL + "/item/newsItem/find/" + this.categoryId, {
+                    params: {
+                        isSent: true,   // 已发布
+                        isTodayUpdate: true,    // 今日更新
+                    }
+                }).then(resp => {
+                    this.newsItems = resp.data;
+                    this.totalNewsItems = this.newsItems.length;
+                }).catch(err => {
+                    console.log("【首页】要闻数据加载失败, 异常是：", err);
+                });
+            },
+            loadingNewsLeaderBoards() {
+                // 查询首页-排行榜数据
+                axios.get(BASE_URL + "/item/newsItem/find/17", {
+                    params: {
+                        isSent: true,   // 已发布
+                        isTodayUpdate: true,    // 今日更新
+                    }
+                }).then(resp => {
+                    this.NewsLeaderBoards = resp.data;
+                }).catch(err => {
+                    console.log("【首页】排行榜数据加载失败，异常是：", err);
+                });
+            },
+        },
+        components: {
+            newsTop,
+            newsHeader,
+        }
+    });
+</script>

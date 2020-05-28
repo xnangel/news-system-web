@@ -1,0 +1,44 @@
+/*ul li属性*/
+.news-card-ul {
+    list-style-type: none;
+}
+.news-card-ul li {
+    overflow: hidden;
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+}
+.news-card-ul li:hover {
+    background: #4087C5;
+}
+.news-card-ul li a {
+    color: #303133;
+}
+.news-card-ul li a:hover {
+    color: #0000ff;
+    font-weight: bolder;
+}
+
+.news-card-ul-special {
+    list-style-type: none;
+}
+.news-card-ul-special li {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    padding: 3px;
+    border-bottom: 1px #4087C5 dashed;
+}
+.news-card-ul-special li a {
+    color: #303133;
+}
+.news-card-ul-special li a:hover {
+    color: #C20C0C;
+    font-weight: bolder;
+}
+
+.box-card-height {
+    height: 500px;
+    overflow: auto;
+}

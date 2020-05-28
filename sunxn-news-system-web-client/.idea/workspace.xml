@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="24bdd473-29bd-4e31-a472-8bc68baf1dd7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\hadoop\apache-maven-3.3.9\mavenLocalRepository" />
+        <option name="mavenHome" value="D:/hadoop/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\hadoop\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/plugins/element-ui/package.json" />
+  </component>
+  <component name="ProjectId" id="1aIr8CiTGxWixD5duxaLHSYqhz1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\prictice6_JavaEE\projects\web-crawler-news-system-page\sunxn-news-system-web-client\js\pages" />
+      <recent name="E:\prictice6_JavaEE\projects\web-crawler-news-system-page\sunxn-news-system-web-client\js" />
+      <recent name="E:\prictice6_JavaEE\projects\web-crawler-news-system-page\sunxn-news-system-web-client\plugins" />
+      <recent name="E:\prictice6_JavaEE\projects\web-crawler-news-system-page\sunxn-news-system-web-client\css" />
+      <recent name="E:\prictice6_JavaEE\projects\web-crawler-news-system-page\sunxn-news-system-web-client\css\vue" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24bdd473-29bd-4e31-a472-8bc68baf1dd7" name="Default Changelist" comment="" />
+      <created>1586433787652</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586433787652</updated>
+      <workItem from="1586433795706" duration="72000" />
+      <workItem from="1586433881373" duration="8113000" />
+      <workItem from="1586485100142" duration="14893000" />
+      <workItem from="1586586876247" duration="13784000" />
+      <workItem from="1586658899341" duration="10564000" />
+      <workItem from="1586682365243" duration="3611000" />
+      <workItem from="1586746393037" duration="4268000" />
+      <workItem from="1586763605712" duration="13282000" />
+      <workItem from="1586919018366" duration="3840000" />
+      <workItem from="1587299981685" duration="5806000" />
+      <workItem from="1587345946497" duration="2708000" />
+      <workItem from="1587350101401" duration="377000" />
+      <workItem from="1587385984337" duration="1691000" />
+      <workItem from="1587891476389" duration="1261000" />
+      <workItem from="1587993314478" duration="326000" />
+      <workItem from="1588395195503" duration="720000" />
+      <workItem from="1588997879886" duration="2389000" />
+      <workItem from="1589013883858" duration="2058000" />
+      <workItem from="1589072605470" duration="618000" />
+      <workItem from="1589513303049" duration="1013000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="256" y="79" key="#Project_Structure" timestamp="1586433861395">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="256" y="79" key="#Project_Structure/0.0.1920.1032@0.0.1920.1032" timestamp="1586433861395" />
+    <state x="938" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586436550633">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="938" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1586436550633" />
+    <state x="1146" y="306" key="FileChooserDialogImpl" timestamp="1589008470617">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="1146" y="306" key="FileChooserDialogImpl/0.0.1920.1032@0.0.1920.1032" timestamp="1589008470617" />
+  </component>
+</project>

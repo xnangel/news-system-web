@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sunxn news system client</title>
+    <!-- import Element css   -->
+    <link rel="stylesheet" href="./plugins/element-ui/lib/theme-chalk/index.css">
+
+    <link rel="stylesheet" href="./css/pages/commons.css" />
+    <link rel="stylesheet" href="./css/pages/mainCategory.css" />
+</head>
+<body class="bg-grey">
+    <div id="main">
+        <news-top></news-top>
+
+        <news-header></news-header>
+
+        <el-row class="news-margin-top">
+            <el-col :span="4" class="grid-main-content"></el-col>
+            <el-col :span="16">
+                <el-row :gutter="20">
+                    <el-col :span="14">
+                        <div class="block">
+                            <el-carousel v-if="carouselNews.length != 0" trigger="click" height="350px">
+                                <el-carousel-item v-for="(carouselNew, i) in carouselNews" :key="i">
+                                    <h3 class="small">{{ carouselNew.title }}</h3>
+                                    <a :href="'./newsDetail.html?newsId=' + carouselNew.newsId" target="_blank">
+                                        <img height="350px" :src="carouselNew.imageUrl" :title="carouselNew.title" :alt="carouselNew.title" />
+                                    </a>
+                                </el-carousel-item>
+                            </el-carousel>
+                            <el-carousel v-else trigger="click" height="350px">
+                                <el-carousel-item v-for="item in 3" :key="item">
+                                    <h3 class="small">无该数据</h3>
+                                </el-carousel-item>
+                            </el-carousel>
+                        </div>
+                    </el-col>
+                    <el-col :span="10">
+                        <h3 class="news-h3"><span>即时新闻</span></h3>
+                        <div>
+                            <ul class="news-ul">
+                                <li v-for="(newsItem, i) in newsItems" :key="i"><a :href="'./newsDetail.html?newsId=' + newsItem.id"><i>{{i+1}}</i> {{newsItem.title}}</a></li>
+                            </ul>
+                        </div>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span="4" class="grid-main-content"></el-col>
+        </el-row>
+    </div>
+</body>
+</html>
+
+<!-- import Vue before Element -->
+<script src="js/vue/vue.js"></script>
+<!-- import Element JS -->
+<script src="./plugins/element-ui/lib/index.js"></script>
+<!-- import axios -->
+<script src="./js/axios.min.js"></script>
+
+<script src="./js/pages/newsTop.js"></script>
+<script src="./js/pages/newsHeader.js"></script>
+<script src="./js/pages/commons.js"></script>
+<script src="./js/pages/getParameter.js"></script>
+<script>
+    new Vue({
+       el: "#main",
+       data() {
+           return {
+                categoryId: 1,  // 分类id
+                newsItems: [],  //  新闻集合
+                carouselNews: [],   // 轮播图新闻集合
+           }
+       },
+        created() {
+            this.parseUrlParamId();
+            this.loadingMainCategoryData();
+            this.loadingCarouselInfo();
+        },
+        methods: {
+            parseUrlParamId() {
+                let parameter = getParameter("id");
+                if (parameter) {
+                    this.categoryId = parameter;
+                }
+            },
+            loadingCarouselInfo() {
+                axios.get(BASE_URL + "/item/carousel/find/list/" + this.categoryId).then(resp => {
+                    this.carouselNews = resp.data;
+                }).catch(err => {
+                   console.log("【主要】轮播图新闻数据加载失败，异常信息为：", err);
+                });
+            },
+            loadingMainCategoryData() {
+                axios.get(BASE_URL + "/item/newsItem/find/" + this.categoryId, {
+                    params: {
+                        isSent: true,   // 已发布
+                        isTodayUpdate: true,    // 今日更新
+                    }
+                }).then(resp => {
+                    this.newsItems = resp.data;
+                }).catch(err => {
+                    console.log("【主要】 即时新闻数据加载失败，异常为：", err);
+                });
+            },
+        },
+        components: {
+            newsTop,
+            newsHeader,
+        }
+    });
+</script>

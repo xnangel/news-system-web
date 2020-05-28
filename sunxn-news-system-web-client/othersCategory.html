@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sunxn news system client</title>
+    <!-- import Element css   -->
+    <link rel="stylesheet" href="./plugins/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./css/pages/commons.css" />
+
+    <link rel="stylesheet" href="./css/pages/othersCategory.css" />
+</head>
+<body class="bg-grey">
+    <div id="others">
+        <news-top></news-top>
+        <news-header></news-header>
+
+        <el-row>
+            <el-col :span="5" class="grid-main-content"></el-col>
+            <el-col :span="14">
+                <div class="grid-main-content bg-white news-margin-top news-padding-top-bottom">
+                    <el-tabs :tab-position="tabPosition" style="padding: 5px 0;">
+                        <el-tab-pane v-for="(category, i) in otherCategories" :key="i" :label="category.name">
+                            <div>
+                                <el-breadcrumb separator-class="el-icon-arrow-right">
+                                    <el-breadcrumb-item :to="{ path: '/' }">其他</el-breadcrumb-item>
+                                    <el-breadcrumb-item>{{category.name}}</el-breadcrumb-item>
+                                </el-breadcrumb>
+                            </div>
+                            <div class="news-margin-top news-margin-right news-margin-left">
+                                <el-card>
+                                    <ul class="news-card-ul-others">
+                                        <li v-for="(newsItemValue, o) in category.newsItems" :key="o"><a :href="'./newsDetail.html?newsId=' + newsItemValue.id" class="text-over-show">{{newsItemValue.title}}</a></li>
+                                    </ul>
+                                </el-card>
+                            </div>
+                        </el-tab-pane>
+                    </el-tabs>
+                    <span class="el-icon-arrow-up rocket" id="backTop" title="回到顶部"></span>
+                </div>
+            </el-col>
+            <el-col :span="5" class="grid-main-content"></el-col>
+        </el-row>
+    </div>
+</body>
+</html>
+
+<!-- import Vue before Element -->
+<script src="js/vue/vue.js"></script>
+<!-- import Element JS -->
+<script src="./plugins/element-ui/lib/index.js"></script>
+<!-- import axios -->
+<script src="./js/axios.min.js"></script>
+
+<script src="js/pages/newsTop.js"></script>
+<script src="./js/pages/newsHeader.js"></script>
+<script src="./js/pages/commons.js"></script>
+<script src="./js/pages/getParameter.js"></script>
+<script>
+
+    window.onload = function () {
+        var timer = null, leader = 0, target = 0;
+        //leader 当前的位置  target 目标位置
+        window.onscroll = function () {
+            scroll().top > 0 ? show("backTop"):hide("backTop");
+            //如果大于0 显示 否则 隐藏
+            leader = scroll().top; //存储当前的位置
+        };
+        $("backTop").onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var step = (target - leader)/10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                leader = leader + step ;
+                //scrollTo()方法可把内容滚动到指定的坐标
+                /* scrollTo(xpos, ypos)
+                 * xpos 必需，要在窗口文档显示区左上角显示的文档的x坐标
+                 * ypos 必需，要在窗口文档显示区左上角显示的文档的y坐标
+                 */
+                window.scrollTo(0, leader);
+                console.log(leader);
+                if(leader == target) {
+                    clearInterval(timer);
+                }
+            },30);
+        }
+    };
+
+    new Vue({
+       el: "#others",
+       data() {
+           return {
+               tabPosition: 'left',
+               otherCategories: [],  // 其他 分类集合
+           }
+       },
+        created() {
+            this.loadingOtherCategoryNewsItemsData();
+        },
+        methods: {
+            loadingOtherCategoryNewsItemsData() {
+               axios.get(BASE_URL + "/item/category/find/categoryNewsItem/1").then(resp => {
+                   console.log(resp);
+                    this.otherCategories = resp.data;
+               }).catch(err => {
+                  console.log("【其他】分类和对应的新闻数据加载失败, 异常信息为：", err);
+               });
+            },
+        },
+       components: {
+           newsTop,
+           newsHeader,
+       }
+    });
+</script>
+

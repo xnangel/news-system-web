@@ -1,0 +1,29 @@
+.news-card-ul-others li {
+    height: 30px;
+    line-height: 30px;
+}
+.news-card-ul-others li a {
+    display: block;
+    color: #606266;
+    cursor: pointer;
+}
+.news-card-ul-others li a:hover {
+    text-decoration: underline;
+    color: #C20C0C;
+}
+
+/*回到顶部属性*/
+.rocket {
+    position: fixed;
+    right: 250px;
+    bottom: 50px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background: #D0EBFE;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: none;
+}
